@@ -7,16 +7,18 @@ import time
 # context managers
 with Booking(teardown=False) as bot:
     bot.land_first_page()
-    # bot.enter_search_text("Bangalore tent and Pandal Service")
-    # bot.enter_search_text("Tent and Pandal Services in Bengaluru")
-    bot.enter_search_text("tent house providers in Bengaluru")
+    # bot.enter_search_text("Tent Services in Bengaluru")
+    bot.enter_search_text("Event management companies in Bengaluru")
     bot.collect_data()
 
 
     # Creating csv file from the list
-    pd.DataFrame(bot.getData()).to_csv("tent_pandal_vendors.csv", index=True)
+    # file_name = "tent_vendor.csv"
+    file_name = "event_management_vendor.csv"
+
+    pd.DataFrame(bot.getData()).to_csv(file_name, index=True)
     print(
-        f"Successfully created a file named tent_pandal_vendors.csv in the current directory."
+        f"Successfully created a file name {file_name} in the current directory."
     )
     WebDriverWait(bot, 10)
     time.sleep(10)

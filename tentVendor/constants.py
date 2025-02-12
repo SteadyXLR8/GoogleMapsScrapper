@@ -10,7 +10,7 @@ RESULT_FEED_SELECTOR = "div[role='feed']"
 # class for items in the feed
 RESULT_ITEM_CLASS = "Nv2PK"
 
-# class for links in each item
+# # class for links in each item
 RESULT_LINK_CLASS = "hfpxzc"
 
 # class for name of each item
@@ -28,14 +28,23 @@ CLOSE_ITEM_INFO_WINDOW_SELECTOR = "[data-disable-idom='true']"
 # error message during data fetching
 ERROR_MESSAGE = "Sorry, we are unable to fetch the data at the moment due to "
 
-# href attribute
-HREF_ATTRIBUTE = "href"
+# selector for share button
+SHARE_BUTTON_SELECTOR = "[data-value='Share']"
+
+# selector for input element for the link
+LINK_INPUT_SELECTOR = "vrsrZe"
+
+# selector for close button for the modal
+CLOSE_BUTTON_SELECTOR = '[aria-label="Close"]'
 
 # script for bringing the list items into focus
 BRING_IN_FOCUS_SCRIPT = "arguments[0].scrollIntoView();"
 
 # const to keep track of how many times to scroll the feed container
-SCROLL_FEED_COUNTER = 500
+# More data -> increase the counter
+SCROLL_FEED_COUNTER = 750
+# less data -> decrease the counter
+# SCROLL_FEED_COUNTER = 300
 
 # timeout after each scroll
 SCROLL_TIMEOUT = 1

@@ -67,9 +67,9 @@ class Booking(webdriver.Chrome):
                 results = container.find_elements(By.CLASS_NAME, const.RESULT_ITEM_CLASS)
 
                 for item in results:
-                    # getting the link
+                    # getting the link -> extracts very large link-> requires shortener
                     linkItem = item.find_element(By.CLASS_NAME, const.RESULT_LINK_CLASS)
-                    link = linkItem.get_attribute(const.HREF_ATTRIBUTE)
+                    # link = linkItem.get_attribute(const.HREF_ATTRIBUTE)
                     # getting business name
                     name = item.find_element(By.CLASS_NAME, const.RESULT_NAME_CLASS).text
                     # to avoid overlapping item with "Back to top" button -> bring item in focus
@@ -89,6 +89,21 @@ class Booking(webdriver.Chrome):
                         phone = phone_container.text
                     except NoSuchElementException:
                         phone = const.NOT_AVAILABLE
+
+                    # find the shorter link
+                    try:
+                        share_button = self.find_element(By.CSS_SELECTOR, const.SHARE_BUTTON_SELECTOR)
+                        share_button.click()
+
+                        # input element to extract the shorter link
+                        link_input = self.find_element(By.CLASS_NAME, const.LINK_INPUT_SELECTOR)
+                        link = link_input.get_attribute("value")
+
+                        # close the modal
+                        close_modal_button = self.find_element(By.CSS_SELECTOR, const.CLOSE_BUTTON_SELECTOR)
+                        close_modal_button.click()
+                    except NoSuchElementException:
+                        link = const.NOT_AVAILABLE
                     # creating data object
                     data:T = {
                         "Name": name,
